@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Helpers.fs" />
+    <Compile Include="Position.fs" />
     <Compile Include="Lexer.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
