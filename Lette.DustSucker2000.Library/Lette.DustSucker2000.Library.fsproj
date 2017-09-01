@@ -54,6 +54,7 @@
     <Compile Include="Helpers.fs" />
     <Compile Include="Position.fs" />
     <Compile Include="Lexer.fs" />
+    <Compile Include="Parser.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
