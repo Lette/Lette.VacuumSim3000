@@ -49,15 +49,15 @@ module Parser =
         | _ -> sprintf "Failed to parse initial location. Tokens given: %A" tokens |> Failure
 
     let private parseCommands tokens =
-        let rec trParseCommand tokens commands =
+        let rec trParseCommand tokens instructions =
             match tokens with
-            | (Letter 'A' :: ts) -> trParseCommand ts (Advance :: commands)
-            | (Letter 'L' :: ts) -> trParseCommand ts (TurnLeft :: commands)
-            | (Letter 'R' :: ts) -> trParseCommand ts (TurnRight :: commands)
-            | _ -> (commands, tokens)
+            | (Letter 'A' :: ts) -> trParseCommand ts (Advance :: instructions)
+            | (Letter 'L' :: ts) -> trParseCommand ts (TurnLeft :: instructions)
+            | (Letter 'R' :: ts) -> trParseCommand ts (TurnRight :: instructions)
+            | _ -> (instructions, tokens)
 
         trParseCommand tokens []
-            |> (fun (cs, ts) -> (cs |> List.rev, ts))
+            |> (fun (is, ts) -> (is |> List.rev, ts))
             |> Success
 
     let private orderedParsers =
