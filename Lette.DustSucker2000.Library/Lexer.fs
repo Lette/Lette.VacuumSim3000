@@ -6,7 +6,7 @@ type Token =
     | Space
     | CarriageReturn
     | LineFeed
-    | Unknown of char * Position
+    | Unknown of char * InputStreamPosition
 
 module Lexer =
 
