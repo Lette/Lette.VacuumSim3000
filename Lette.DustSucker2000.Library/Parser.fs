@@ -22,31 +22,31 @@ module Parser =
 
     let private parseSetRoomSize tokens =
         match tokens with
-        | (Number width :: Space :: Number height :: ts) -> ([ SetRoomSize { Width = width; Height = height } ], ts) |> Success
-        | _ -> sprintf "Failed to parse room size. Tokens given: %A" tokens |> Failure
+        | (Number width :: Space :: Number height :: ts) -> ([ SetRoomSize { Width = width; Height = height } ], ts) |> Ok
+        | _ -> sprintf "Failed to parse room size. Tokens given: %A" tokens |> Error
 
     let private parseNewLine tokens =
         match tokens with
-        | (CarriageReturn :: LineFeed :: ts) -> ([], ts) |> Success
-        | _ -> sprintf "Expected a new line. Tokens given: %A" tokens |> Failure
+        | (CarriageReturn :: LineFeed :: ts) -> ([], ts) |> Ok
+        | _ -> sprintf "Expected a new line. Tokens given: %A" tokens |> Error
 
     let private parseSetInitialHeading tokens =
         match tokens with
-        | (Letter 'N' :: ts) -> ([ SetInitialHeading North ], ts) |> Success
-        | (Letter 'E' :: ts) -> ([ SetInitialHeading East] , ts) |> Success
-        | (Letter 'S' :: ts) -> ([ SetInitialHeading South ], ts) |> Success
-        | (Letter 'W' :: ts) -> ([ SetInitialHeading West ], ts) |> Success
-        | _ -> sprintf "Failed to parse initial heading. Tokens given: %A" tokens |> Failure
+        | (Letter 'N' :: ts) -> ([ SetInitialHeading North ], ts) |> Ok
+        | (Letter 'E' :: ts) -> ([ SetInitialHeading East] , ts) |> Ok
+        | (Letter 'S' :: ts) -> ([ SetInitialHeading South ], ts) |> Ok
+        | (Letter 'W' :: ts) -> ([ SetInitialHeading West ], ts) |> Ok
+        | _ -> sprintf "Failed to parse initial heading. Tokens given: %A" tokens |> Error
 
     let private parseSpace tokens =
         match tokens with
-        | (Space :: ts) -> ([], ts) |> Success
-        | _ -> sprintf "Expected a space. Tokens given: %A" tokens |> Failure
+        | (Space :: ts) -> ([], ts) |> Ok
+        | _ -> sprintf "Expected a space. Tokens given: %A" tokens |> Error
 
     let private parseSetInitialLocation tokens =
         match tokens with
-        | (Number x :: Space :: Number y :: ts) -> ([ SetInitialLocation { X = x; Y = y } ], ts) |> Success
-        | _ -> sprintf "Failed to parse initial location. Tokens given: %A" tokens |> Failure
+        | (Number x :: Space :: Number y :: ts) -> ([ SetInitialLocation { X = x; Y = y } ], ts) |> Ok
+        | _ -> sprintf "Failed to parse initial location. Tokens given: %A" tokens |> Error
 
     let private parseCommands tokens =
         let rec trParseCommand tokens instructions =
@@ -58,7 +58,7 @@ module Parser =
 
         trParseCommand tokens []
             |> (fun (is, ts) -> (is |> List.rev, ts))
-            |> Success
+            |> Ok
 
     let private orderedParsers =
         [
@@ -76,10 +76,10 @@ module Parser =
 
         let rec trParse tokens parsers instructions =
             match parsers with
-            | [] -> Success instructions
+            | [] -> Ok instructions
             | (p :: ps) ->
                 match p tokens with
-                | Success (is, ts) -> trParse ts ps (instructions @ is)
-                | Failure msg -> Failure msg
+                | Ok (is, ts) -> trParse ts ps (instructions @ is)
+                | Error msg -> Error msg
 
         trParse tokens orderedParsers []

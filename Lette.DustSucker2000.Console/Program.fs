@@ -18,8 +18,8 @@ let printInstructions instructions =
 
 let printParseResult instructions =
     match instructions with
-    | Success is  -> printInstructions is
-    | Failure msg -> printfn "%s" msg
+    | Ok is  -> printInstructions is
+    | Error msg -> printfn "%s" msg
     instructions
 
 let printFinalResult (state : State) =
