@@ -22,6 +22,19 @@ let printParseResult instructions =
     | Failure msg -> printfn "%s" msg
     instructions
 
+let printFinalResult (state : State) =
+    let heading =
+        match state.Heading with
+        | North -> "N"
+        | East -> "E"
+        | South -> "S"
+        | West -> "W"
+
+    printfn "--------------------------------------"
+    printfn "Result: %s %i %i" heading state.Location.X state.Location.Y
+    printfn "--------------------------------------"
+    state
+
 [<EntryPoint>]
 let main argv =
 
@@ -31,6 +44,7 @@ let main argv =
         |> printTokens
         |> Parser.parse
         |> printParseResult
+        |> Result.map (Interpreter.run >> printFinalResult)
         |> ignore
 
     0
