@@ -8,17 +8,13 @@ module IOHelpers =
     let private readLine _ =
         stdin.ReadLine()
 
-    let ints = Int32.TryParse
-    let strings (s : string) = (true, s)
+    let private toOption parseResult =
+        match parseResult with
+        | (true, s) -> Some s
+        | _         -> None
+
+    let ints = Int32.TryParse >> toOption
+    let strings (s : string) = s
 
     let read parser =
-
-        let toOption parseResult =
-            match parseResult with
-            | (true, s) -> Some s
-            | _         -> None
-
-        let generator =
-            readLine >> parser >> toOption
-
-        Seq.initInfinite generator
+        Seq.initInfinite (readLine >> parser)

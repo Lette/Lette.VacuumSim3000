@@ -4,8 +4,7 @@ type Token =
     | Number of int
     | Letter of char
     | Space
-    | CarriageReturn
-    | LineFeed
+    | EndOfLine
     | Unknown of char * InputStreamPosition
 
 module Lexer =
@@ -21,7 +20,7 @@ module Lexer =
     let private (|IsKnownLetter|_|) c =
         Seq.tryFind ((=) c) knownLetters
 
-    let tokenize input =
+    let tokenize (input : string list) =
 
         let rec parse chars position tokens =
 
@@ -35,13 +34,16 @@ module Lexer =
                 | IsDigit n       -> addDigit n cs
                 | IsKnownLetter l -> parse cs (position |> nextColumn) (Letter l              :: tokens)
                 | c when c = ' '  -> parse cs (position |> nextColumn) (Space                 :: tokens)
-                | c when c = '\r' -> parse cs (position |> nextColumn) (CarriageReturn        :: tokens)
-                | c when c = '\n' -> parse cs (position |> nextRow)    (LineFeed              :: tokens)
                 | c               -> parse cs (position |> nextColumn) (Unknown (c, position) :: tokens)
 
             match chars with
-            | []        -> tokens
+            | []        -> (EndOfLine :: tokens)
             | (c :: cs) -> addToken c cs
 
-        parse (input |> Seq.toList) startPosition []
+        let rec parseRows rows position tokens =
+            match rows with
+            | []        -> tokens
+            | (r :: rs) -> parseRows rs (position |> nextRow) (parse (r |> Seq.toList) position tokens)
+
+        parseRows input startPosition []
             |> List.rev

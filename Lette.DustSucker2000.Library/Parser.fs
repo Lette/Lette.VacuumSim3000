@@ -25,10 +25,10 @@ module Parser =
         | (Number width :: Space :: Number height :: ts) -> ([ SetRoomSize { Width = width; Height = height } ], ts) |> Ok
         | _ -> sprintf "Failed to parse room size. Tokens given: %A" tokens |> Error
 
-    let private parseNewLine tokens =
+    let private parseEndOfLine tokens =
         match tokens with
-        | (CarriageReturn :: LineFeed :: ts) -> ([], ts) |> Ok
-        | _ -> sprintf "Expected a new line. Tokens given: %A" tokens |> Error
+        | (EndOfLine :: ts) -> ([], ts) |> Ok
+        | _ -> sprintf "Expected end of line. Tokens given: %A" tokens |> Error
 
     let private parseSetInitialHeading tokens =
         match tokens with
@@ -63,13 +63,13 @@ module Parser =
     let private orderedParsers =
         [
             parseSetRoomSize
-            parseNewLine
+            parseEndOfLine
             parseSetInitialHeading
             parseSpace
             parseSetInitialLocation
-            parseNewLine
+            parseEndOfLine
             parseCommands
-            parseNewLine
+            parseEndOfLine
         ]
 
     let parse tokens =

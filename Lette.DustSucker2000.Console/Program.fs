@@ -49,18 +49,20 @@ let printFinalResult (state : State) =
     printfn "--------------------------------------"
     state
 
+let readThreeStrings () =
+    read strings
+        |> Seq.truncate 3
+        |> Seq.toList
+
+
 [<EntryPoint>]
 let main argv =
 
     printHeader ()
 
-    read strings
-        |> Seq.where (Option.isSome)
-        |> Seq.map Option.get
-        |> Seq.truncate 3
-        |> Seq.reduce (fun a b -> a + "\r\n" + b)
-        |> (fun a -> a + "\r\n")
-        |> printInput
+    let input = readThreeStrings ()
+
+    input
         |> Lexer.tokenize
         |> printTokens
         |> Parser.parse

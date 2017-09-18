@@ -59,9 +59,9 @@
     <Compile Include="Program.fs" />
     <None Include="App.config" />
     <Content Include="packages.config" />
-    <AdditionalFiles Include="sample-input.txt">
+    <Content Include="sample-input.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </AdditionalFiles>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="mscorlib" />
