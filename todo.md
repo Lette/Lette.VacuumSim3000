@@ -1,6 +1,6 @@
 #### Project TODO List
 
-([Rules] below.)
+([Rules](#rules) below.)
 
 ##### To do
 
@@ -49,7 +49,7 @@
 
 ##### Rules
 
-1. Add new tasks to the [To do] list and prioritize.
+1. Add new tasks to the [To do](#to-do) list and prioritize.
 1. The tasks with the highest priorities are at the top of the list.
 1. No item can be marked as done, if it has sub-items that are not done.
-1. When an item is done, move it to the bottom of the [Done] list.
+1. When an item is done, move it to the bottom of the [Done](#done) list.
