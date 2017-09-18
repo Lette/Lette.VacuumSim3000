@@ -3,18 +3,14 @@
 [<AutoOpen>]
 module IOHelpers =
 
-    open System
+    let readInputWithHeaders headers =
 
-    let private readLine _ =
-        stdin.ReadLine()
+        let rec trRead (headers : string list) values =
+            match headers with
+            | [] -> values
+            | (h :: hs) ->
+                stdout.WriteLine h
+                trRead hs (stdin.ReadLine() :: values)
 
-    let private toOption parseResult =
-        match parseResult with
-        | (true, s) -> Some s
-        | _         -> None
-
-    let ints = Int32.TryParse >> toOption
-    let strings (s : string) = s
-
-    let read parser =
-        Seq.initInfinite (readLine >> parser)
+        trRead headers []
+            |> List.rev

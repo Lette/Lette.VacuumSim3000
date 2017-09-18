@@ -1,13 +1,6 @@
 ﻿open Lette.DustSucker2000.Library
 open Lette.DustSucker2000.Console.IOHelpers
 
-let printInput input =
-    printfn "Input:"
-    printfn "--------------------------------------"
-    printfn "%s" input
-    printfn "--------------------------------------"
-    input
-
 let printHeader () =
     [
         "DustSucker2000 Simulator by Christoffer Lette"
@@ -18,6 +11,7 @@ let printHeader () =
         "The input for the simulator is read from <stdin>. Any errors in the"
         "input data or from the running simulation will be directed to <stderr>."
         "The final result will be the last row written to <stdout>."
+        ""
     ]
         |> List.iter stdout.WriteLine
 
@@ -29,22 +23,25 @@ let printFinalResult (state : State) =
         | South -> "S"
         | West -> "W"
 
+    printfn ""
     printfn "Result: %s %i %i" heading state.Location.X state.Location.Y
 
-let readThreeStrings () =
-    read strings
-        |> Seq.truncate 3
-        |> Seq.toList
+let getInput () =
+
+    readInputWithHeaders
+        [
+            "Enter room size (<Width> <Height>):"
+            "Enter initial heading and location (<N|E|S|W> <X> <Y>):"
+            "Enter commands (<A|L|R>...):"
+        ]
 
 
 [<EntryPoint>]
-let main argv =
+let main _ =
 
     printHeader ()
 
-    let input = readThreeStrings ()
-
-    input
+    getInput ()
         |> Lexer.tokenize
         |> Parser.parse
         |> Result.map (Interpreter.run >> printFinalResult)
