@@ -22,6 +22,9 @@ module Parser =
 
     let private parseSetRoomSize tokens =
         match tokens with
+        | (Number 0 :: Space :: Number 0 :: _) -> "Room width and height must be greater than zero." |> Error
+        | (Number 0 :: Space :: Number _ :: _) -> "Room width must be greater than zero." |> Error
+        | (Number _ :: Space :: Number 0 :: _) -> "Room height must be greater than zero." |> Error
         | (Number width :: Space :: Number height :: ts) -> ([ SetRoomSize { Width = width; Height = height } ], ts) |> Ok
         | _ -> sprintf "Failed to parse room size. Tokens given: %A" tokens |> Error
 
