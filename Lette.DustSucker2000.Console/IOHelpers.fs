@@ -12,7 +12,13 @@ module IOHelpers =
                 stdout.WriteLine h
                 match stdin.ReadLine() with
                 | null -> values
-                | value -> trRead hs (value :: values)
+                | value ->
+                    // The following statement makes this code platform dependant.
+                    // Generally, there is no way to distinguish between redirected and
+                    // not redirected input. This is only used to show data coming from
+                    // redirected input on screen.
+                    if System.Console.IsInputRedirected then stdout.WriteLine value
+                    trRead hs (value :: values)
 
         trRead headers []
             |> List.rev
