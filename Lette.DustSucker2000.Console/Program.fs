@@ -44,10 +44,7 @@ let printFinalResult (state : State) =
         | South -> "S"
         | West -> "W"
 
-    printfn "--------------------------------------"
     printfn "Result: %s %i %i" heading state.Location.X state.Location.Y
-    printfn "--------------------------------------"
-    state
 
 let readThreeStrings () =
     read strings
