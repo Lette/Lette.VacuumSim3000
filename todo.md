@@ -4,6 +4,12 @@
 
 ##### To do
 
+- [ ] Rename to `Lette.VacuumSim3000.*`
+  - [ ] Project files
+  - [ ] Outputs
+  - [ ] Namespaces
+  - [ ] Header text
+- [ ] Push to GitHub
 - [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`
   * I.e. `run: ... -> Result<State, (State, message)> list`
 - [ ] Interpreter should return errors for:
@@ -16,11 +22,6 @@
   - [ ] after interpretation to stderr (Error (s, msg))
 - [ ] ILMerge
   * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
-- [ ] Rename to VacuumSim3000
-  - [ ] Project files
-  - [ ] Outputs
-  - [ ] Namespaces
-  - [ ] Header text
 - [ ] Investigate: Interpreter could use issue commands...
   * `type Command = State -> State` or something like that.
     * (...or maybe that's exactly what it is doing right now...)
