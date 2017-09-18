@@ -22,6 +22,19 @@ let printParseResult instructions =
     | Error msg -> printfn "%s" msg
     instructions
 
+let printHeader () =
+    [
+        "DustSucker2000 Simulator by Christoffer Lette"
+        ""
+        "This software calculates the end position of the vacuum cleaner,"
+        "given an initial configuration and a set of commands."
+        ""
+        "The input for the simulator is read from <stdin>. Any errors in the"
+        "input data or from the running simulation will be directed to <stderr>."
+        "The final result will be the last row written to <stdout>."
+    ]
+        |> List.iter stdout.WriteLine
+
 let printFinalResult (state : State) =
     let heading =
         match state.Heading with
@@ -37,6 +50,8 @@ let printFinalResult (state : State) =
 
 [<EntryPoint>]
 let main argv =
+
+    printHeader ()
 
     "6 7\r\nN 3 2\r\nRARAARARA\r\n"
         |> printInput
