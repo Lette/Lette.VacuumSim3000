@@ -12,19 +12,16 @@ module Lexer =
 
     let private knownLetters = "AELNRSW" :> char seq
 
-    let private (|IsDigit|_|) (c : char) =
+    let private (|IsDigit|_|) c =
         if '0' <= c && c <= '9' then
             int c - int '0' |> Some
         else
             None
 
-    let private (|IsKnownLetter|_|) (c : char) =
-        if knownLetters |> Seq.contains c then
-            Some c
-        else
-            None
+    let private (|IsKnownLetter|_|) c =
+        Seq.tryFind ((=) c) knownLetters
 
-    let tokenize (input : char seq) =
+    let tokenize input =
 
         let rec parse chars position tokens =
 
