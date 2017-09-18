@@ -8,7 +8,7 @@ module State =
         {
             Heading = North
             Location = { X = 0; Y = 0 }
-            RoomSize = { Width = 0; Height = 0 }
+            RoomSize = { Width = 1; Height = 1 }
         }
 
     let setRoomSize roomSize state = { state with RoomSize = roomSize }
@@ -17,12 +17,36 @@ module State =
 
     let setLocation location state = { state with Location = location }
 
+    let private moveNorth state =
+        if state.Location.Y = state.RoomSize.Height - 1 then
+            state
+        else
+            { state with Location = { state.Location with Y = state.Location.Y + 1 } }
+
+    let private moveEast state =
+        if state.Location.X = state.RoomSize.Width - 1 then
+            state
+        else
+            { state with Location = { state.Location with X = state.Location.X + 1 } }
+
+    let private moveSouth state =
+        if state.Location.Y = 0 then
+            state
+        else
+            { state with Location = { state.Location with Y = state.Location.Y - 1 } }
+
+    let private moveWest state =
+        if state.Location.X = 0 then
+            state
+        else
+            { state with Location = { state.Location with X = state.Location.X - 1 } }
+
     let advance (state : State) =
         match state.Heading with
-        | North -> if state.Location.Y = state.RoomSize.Height - 1 then state else { state with Location = { state.Location with Y = state.Location.Y + 1 } }
-        | East  -> if state.Location.X = state.RoomSize.Width - 1  then state else { state with Location = { state.Location with X = state.Location.X + 1 } }
-        | South -> if state.Location.Y = 0  then state else { state with Location = { state.Location with Y = state.Location.Y - 1 } }
-        | West  -> if state.Location.X = 0  then state else { state with Location = { state.Location with X = state.Location.X - 1 } }
+        | North -> moveNorth state
+        | East  -> moveEast state
+        | South -> moveSouth state
+        | West  -> moveWest state
 
     let turnLeft state =
         match state.Heading with
