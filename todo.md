@@ -9,7 +9,7 @@
   - [ ] Folders
   - [x] Outputs
   - [x] Namespaces
-  - [ ] Header text
+  - [x] Header text
   - [ ] Search for old names and replace with new
 - [ ] Push to GitHub
 - [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`

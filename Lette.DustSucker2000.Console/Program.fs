@@ -3,7 +3,7 @@ open Lette.VacuumSim3000.Console.IOHelpers
 
 let printHeader () =
     [
-        "DustSucker2000 Simulator by Christoffer Lette"
+        "VacuumSim3000 by Christoffer Lette"
         ""
         "This software calculates the end position of the vacuum cleaner,"
         "given an initial configuration and a set of commands."
