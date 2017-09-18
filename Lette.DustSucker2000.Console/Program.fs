@@ -1,4 +1,5 @@
 ﻿open Lette.DustSucker2000.Library
+open Lette.DustSucker2000.Console.IOHelpers
 
 let printInput input =
     printfn "Input:"
@@ -53,7 +54,12 @@ let main argv =
 
     printHeader ()
 
-    "6 7\r\nN 3 2\r\nRARAARARA\r\n"
+    read strings
+        |> Seq.where (Option.isSome)
+        |> Seq.map Option.get
+        |> Seq.truncate 3
+        |> Seq.reduce (fun a b -> a + "\r\n" + b)
+        |> (fun a -> a + "\r\n")
         |> printInput
         |> Lexer.tokenize
         |> printTokens
