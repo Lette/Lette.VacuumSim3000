@@ -4,13 +4,6 @@
 
 ##### To do
 
-- [x] Rename to `Lette.VacuumSim3000.*`
-  - [x] Project files
-  - [x] Folders
-  - [x] Outputs
-  - [x] Namespaces
-  - [x] Header text
-  - [x] Search for old names and replace with new
 - [ ] Push to GitHub
 - [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`
   * I.e. `run: ... -> Result<State, (State, message)> list`
@@ -46,6 +39,13 @@
   * Is it even possible???
     * Well, sort of. But not in a platform-independent way, no.
 - [x] Interpreter should return list of states
+- [x] Rename to `Lette.VacuumSim3000.*`
+  - [x] Project files
+  - [x] Folders
+  - [x] Outputs
+  - [x] Namespaces
+  - [x] Header text
+  - [x] Search for old names and replace with new
 
 ##### Rules
 
