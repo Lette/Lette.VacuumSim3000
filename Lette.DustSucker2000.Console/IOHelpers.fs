@@ -10,7 +10,9 @@ module IOHelpers =
             | [] -> values
             | (h :: hs) ->
                 stdout.WriteLine h
-                trRead hs (stdin.ReadLine() :: values)
+                match stdin.ReadLine() with
+                | null -> values
+                | value -> trRead hs (value :: values)
 
         trRead headers []
             |> List.rev

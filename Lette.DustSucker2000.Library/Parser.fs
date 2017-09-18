@@ -99,9 +99,12 @@ module Parser =
             match parsers with
             | [] -> Ok instructions
             | (p :: ps) ->
-                match p tokens with
-                | Ok (is, ts) -> trParse ts ps (instructions @ is)
-                | Error msg -> Error msg
+                match tokens with
+                | [] -> Error "The input stream ended unexpectedly."
+                | _ ->
+                    match p tokens with
+                    | Ok (is, ts) -> trParse ts ps (instructions @ is)
+                    | Error msg -> Error msg
 
         trParse tokens orderedParsers []
 #if DEBUG
