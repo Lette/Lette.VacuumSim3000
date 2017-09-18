@@ -15,16 +15,17 @@ let printHeader () =
     ]
         |> List.iter stdout.WriteLine
 
-let printFinalResult (state : State) =
-    let heading =
-        match state.Heading with
+let printFinalResult (states : State list) =
+    let toString = function
         | North -> "N"
         | East -> "E"
         | South -> "S"
         | West -> "W"
 
+    let lastState = states |> List.last
+
     printfn ""
-    printfn "Result: %s %i %i" heading state.Location.X state.Location.Y
+    printfn "Result: %s %i %i" (lastState.Heading |> toString) lastState.Location.X lastState.Location.Y
 
 let getInput () =
 

@@ -67,16 +67,24 @@ module Interpreter =
 
     let run instructions =
 
-        let rec trRun instructions state =
+
+        let rec trRun instructions states =
+
+            let addState command =
+                match states with
+                | []        -> (State.initialState |> command) :: []
+                | (s :: _) -> (s |> command) :: states
+
             match instructions with
-            | [] -> state
+            | [] -> states
             | (i :: is) ->
                 match i with
-                | SetRoomSize rs       -> trRun is (state |> setRoomSize rs)
-                | SetInitialHeading h  -> trRun is (state |> setHeading h)
-                | SetInitialLocation l -> trRun is (state |> setLocation l)
-                | Advance              -> trRun is (state |> advance)
-                | TurnLeft             -> trRun is (state |> turnLeft)
-                | TurnRight            -> trRun is (state |> turnRight)
+                | SetRoomSize rs       -> setRoomSize rs |> addState |> trRun is
+                | SetInitialHeading h  -> setHeading h   |> addState |> trRun is
+                | SetInitialLocation l -> setLocation l  |> addState |> trRun is
+                | Advance              -> advance        |> addState |> trRun is
+                | TurnLeft             -> turnLeft       |> addState |> trRun is
+                | TurnRight            -> turnRight      |> addState |> trRun is
 
-        trRun instructions State.initialState
+        trRun instructions []
+            |> List.rev
