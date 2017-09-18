@@ -30,9 +30,9 @@ let getInput () =
 
     readInputWithHeaders
         [
-            "Enter room size (<Width> <Height>):"
-            "Enter initial heading and location (<N|E|S|W> <X> <Y>):"
-            "Enter commands (<A|L|R>...):"
+            "Enter room size: (Format: <Width> <Height>, Default: 10 10)"
+            "Enter initial heading and location: (Format: <N|E|S|W> <X> <Y>, Default: N 0 0)"
+            "Enter commands: (Format: <A|L|R>..., Default: {none})"
         ]
 
 

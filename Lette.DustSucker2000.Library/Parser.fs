@@ -20,12 +20,17 @@ type Instruction =
 
 module Parser =
 
+    let private defaultRoomSize = { Width = 10; Height = 10 }
+    let private defaultHeading = North
+    let private defaultLocation = { X = 0; Y = 0 }
+
     let private parseSetRoomSize tokens =
         match tokens with
         | (Number 0 :: Space :: Number 0 :: _) -> "Room width and height must be greater than zero." |> Error
         | (Number 0 :: Space :: Number _ :: _) -> "Room width must be greater than zero." |> Error
         | (Number _ :: Space :: Number 0 :: _) -> "Room height must be greater than zero." |> Error
         | (Number width :: Space :: Number height :: ts) -> ([ SetRoomSize { Width = width; Height = height } ], ts) |> Ok
+        | (EndOfLine :: _) -> ([ SetRoomSize defaultRoomSize ], tokens) |> Ok
         | _ -> sprintf "Failed to parse room size. Tokens given: %A" tokens |> Error
 
     let private parseEndOfLine tokens =
@@ -39,16 +44,19 @@ module Parser =
         | (Letter 'E' :: ts) -> ([ SetInitialHeading East] , ts) |> Ok
         | (Letter 'S' :: ts) -> ([ SetInitialHeading South ], ts) |> Ok
         | (Letter 'W' :: ts) -> ([ SetInitialHeading West ], ts) |> Ok
+        | (EndOfLine :: _) -> ([ SetInitialHeading defaultHeading ], tokens) |> Ok
         | _ -> sprintf "Failed to parse initial heading. Tokens given: %A" tokens |> Error
 
     let private parseSpace tokens =
         match tokens with
         | (Space :: ts) -> ([], ts) |> Ok
+        | (EndOfLine :: _) -> ([], tokens) |> Ok
         | _ -> sprintf "Expected a space. Tokens given: %A" tokens |> Error
 
     let private parseSetInitialLocation tokens =
         match tokens with
         | (Number x :: Space :: Number y :: ts) -> ([ SetInitialLocation { X = x; Y = y } ], ts) |> Ok
+        | (EndOfLine :: _) -> ([ SetInitialLocation defaultLocation ], tokens) |> Ok
         | _ -> sprintf "Failed to parse initial location. Tokens given: %A" tokens |> Error
 
     let private parseCommands tokens =
