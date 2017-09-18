@@ -7,7 +7,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cd554cf0-d9a9-4eaa-b296-3d61e3c47365</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>DustSucker2000.Console</RootNamespace>
+    <RootNamespace>Lette.VacuumSim3000.Console</RootNamespace>
     <AssemblyName>Lette.VacuumSim3000.Console</AssemblyName>
     <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
