@@ -1,4 +1,4 @@
-﻿namespace Lette.DustSucker2000.Console
+﻿namespace Lette.VacuumSim3000.Console
 
 [<AutoOpen>]
 module IOHelpers =

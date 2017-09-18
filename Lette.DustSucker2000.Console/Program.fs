@@ -1,5 +1,5 @@
-﻿open Lette.DustSucker2000.Library
-open Lette.DustSucker2000.Console.IOHelpers
+﻿open Lette.VacuumSim3000.Library
+open Lette.VacuumSim3000.Console.IOHelpers
 
 let printHeader () =
     [

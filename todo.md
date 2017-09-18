@@ -5,10 +5,12 @@
 ##### To do
 
 - [ ] Rename to `Lette.VacuumSim3000.*`
-  - [ ] Project files
-  - [ ] Outputs
-  - [ ] Namespaces
+  - [x] Project files
+  - [ ] Folders
+  - [x] Outputs
+  - [x] Namespaces
   - [ ] Header text
+  - [ ] Search for old names and replace with new
 - [ ] Push to GitHub
 - [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`
   * I.e. `run: ... -> Result<State, (State, message)> list`

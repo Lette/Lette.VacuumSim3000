@@ -1,4 +1,4 @@
-﻿namespace Lette.DustSucker2000.Library
+﻿namespace Lette.VacuumSim3000.Library
 
 type RoomSize = { Width : int; Height : int }
 
