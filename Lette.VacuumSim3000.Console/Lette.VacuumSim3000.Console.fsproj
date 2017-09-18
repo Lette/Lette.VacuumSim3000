@@ -78,7 +78,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lette.DustSucker2000.Library\Lette.VacuumSim3000.Library.fsproj">
+    <ProjectReference Include="..\Lette.VacuumSim3000.Library\Lette.VacuumSim3000.Library.fsproj">
       <Name>Lette.VacuumSim3000.Library</Name>
       <Project>{38ed4ccd-2c53-4512-99e7-74197fe27ab8}</Project>
       <Private>True</Private>

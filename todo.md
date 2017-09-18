@@ -6,7 +6,7 @@
 
 - [ ] Rename to `Lette.VacuumSim3000.*`
   - [x] Project files
-  - [ ] Folders
+  - [x] Folders
   - [x] Outputs
   - [x] Namespaces
   - [x] Header text
