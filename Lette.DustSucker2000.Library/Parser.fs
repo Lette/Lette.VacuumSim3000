@@ -72,6 +72,16 @@ module Parser =
             parseEndOfLine
         ]
 
+    let private printInstructions instructions =
+        printfn "Generated instructions:"
+        instructions |> List.iter (printfn "%A")
+
+    let private printParseResult instructions =
+        match instructions with
+        | Ok is  -> printInstructions is
+        | Error msg -> printfn "%s" msg
+        instructions
+
     let parse tokens =
 
         let rec trParse tokens parsers instructions =
@@ -83,3 +93,6 @@ module Parser =
                 | Error msg -> Error msg
 
         trParse tokens orderedParsers []
+#if DEBUG
+            |> printParseResult
+#endif

@@ -8,21 +8,6 @@ let printInput input =
     printfn "--------------------------------------"
     input
 
-let printTokens tokens =
-    printfn "Found tokens:"
-    printfn "%A" tokens
-    tokens
-
-let printInstructions instructions =
-    printfn "Generated instructions:"
-    instructions |> List.iter (printfn "%A")
-
-let printParseResult instructions =
-    match instructions with
-    | Ok is  -> printInstructions is
-    | Error msg -> printfn "%s" msg
-    instructions
-
 let printHeader () =
     [
         "DustSucker2000 Simulator by Christoffer Lette"
@@ -61,9 +46,7 @@ let main argv =
 
     input
         |> Lexer.tokenize
-        |> printTokens
         |> Parser.parse
-        |> printParseResult
         |> Result.map (Interpreter.run >> printFinalResult)
         |> ignore
 

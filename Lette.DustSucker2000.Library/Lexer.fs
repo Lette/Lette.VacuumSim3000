@@ -20,6 +20,11 @@ module Lexer =
     let private (|IsKnownLetter|_|) c =
         Seq.tryFind ((=) c) knownLetters
 
+    let private printTokens tokens =
+        printfn "Found tokens:"
+        printfn "%A" tokens
+        tokens
+
     let tokenize (input : string list) =
 
         let rec parse chars position tokens =
@@ -47,3 +52,6 @@ module Lexer =
 
         parseRows input startPosition []
             |> List.rev
+#if DEBUG
+            |> printTokens
+#endif
