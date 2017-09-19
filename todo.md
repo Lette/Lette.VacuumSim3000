@@ -4,8 +4,8 @@
 
 ##### To do
 
-- [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`
-  * I.e. `run: ... -> Result<State, (State, message)> list`
+- [ ] Returned states should be either `Ok<State>` or `Error<(State, string)>`
+  * I.e. `run: ... -> Result<State, (State, string)> list`
 - [ ] Interpreter should return errors for:
   - [ ] Bad initial location (outside of room)
     - [ ] Set initial location to closest location inside the room
