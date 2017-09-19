@@ -4,7 +4,6 @@
 
 ##### To do
 
-- [ ] Push to GitHub
 - [ ] Returned states should be either `Ok<State>` or `Error<(state, message)>`
   * I.e. `run: ... -> Result<State, (State, message)> list`
 - [ ] Interpreter should return errors for:
@@ -15,6 +14,8 @@
   - [ ] after lexer to stderr (Unknown token)
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
+- [ ] Paket
+- [ ] FAKE
 - [ ] ILMerge
   * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 - [ ] Investigate: Interpreter could use issue commands...
@@ -46,6 +47,7 @@
   - [x] Namespaces
   - [x] Header text
   - [x] Search for old names and replace with new
+- [x] Push to GitHub
 
 ##### Rules
 
