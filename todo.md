@@ -14,12 +14,6 @@
   - [ ] after lexer to stderr (Unknown token)
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
-- [ ] FAKE
-  - [x] Install FAKE package
-  - [ ] Create build script
-    - [x] `paket install`
-    - [x] build
-    - [ ] Investigate: Turn off automatic package restore in projects
 - [ ] ILMerge
   * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 - [ ] Investigate: Interpreter could use issue commands...
@@ -55,6 +49,12 @@
 - [x] Paket
   - [x] Convert from nuget
   - [x] Install VS extension
+- [x] FAKE
+  - [x] Install FAKE package
+  - [x] Create build script
+    - [x] `paket install`
+    - [x] build
+    - [x] Investigate: Turn off automatic package restore in projects
 
 ##### Rules
 
