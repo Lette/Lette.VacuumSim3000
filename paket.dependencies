@@ -4,3 +4,4 @@ source https://www.nuget.org/api/v2/
 nuget FSharp.Core
 nuget System.ValueTuple 4.3.1 restriction: >= net462
 nuget FAKE
+nuget ilmerge
