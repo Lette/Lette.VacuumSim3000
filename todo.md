@@ -15,10 +15,10 @@
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
 - [ ] FAKE
-  - [ ] Install FAKE package
+  - [x] Install FAKE package
   - [ ] Create build script
-    - [ ] `paket install`
-    - [ ] build
+    - [x] `paket install`
+    - [x] build
     - [ ] Investigate: Turn off automatic package restore in projects
 - [ ] ILMerge
   * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
