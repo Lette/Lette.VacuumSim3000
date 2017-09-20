@@ -14,8 +14,12 @@
   - [ ] after lexer to stderr (Unknown token)
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
-- [ ] Paket
 - [ ] FAKE
+  - [ ] Install FAKE package
+  - [ ] Create build script
+    - [ ] `paket install`
+    - [ ] build
+    - [ ] Investigate: Turn off automatic package restore in projects
 - [ ] ILMerge
   * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 - [ ] Investigate: Interpreter could use issue commands...
@@ -48,6 +52,7 @@
   - [x] Header text
   - [x] Search for old names and replace with new
 - [x] Push to GitHub
+- [x] Paket
 
 ##### Rules
 
