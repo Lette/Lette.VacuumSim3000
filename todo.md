@@ -53,6 +53,8 @@
   - [x] Search for old names and replace with new
 - [x] Push to GitHub
 - [x] Paket
+  - [x] Convert from nuget
+  - [x] Install VS extension
 
 ##### Rules
 
