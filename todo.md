@@ -14,8 +14,6 @@
   - [ ] after lexer to stderr (Unknown token)
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
-- [ ] ILMerge
-  * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 - [ ] Investigate: Interpreter could use issue commands...
   * `type Command = State -> State` or something like that.
     * (...or maybe that's exactly what it is doing right now...)
@@ -55,6 +53,8 @@
     - [x] `paket install`
     - [x] build
     - [x] Investigate: Turn off automatic package restore in projects
+- [x] ILMerge
+  * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 
 ##### Rules
 
