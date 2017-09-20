@@ -13,7 +13,7 @@ module IOHelpers =
                 match stdin.ReadLine() with
                 | null -> values
                 | value ->
-                    // The following statement makes this code platform dependant.
+                    // The following statement makes this code platform dependent.
                     // Generally, there is no way to distinguish between redirected and
                     // not redirected input. This is only used to show data coming from
                     // redirected input on screen.
