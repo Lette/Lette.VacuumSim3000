@@ -18,6 +18,7 @@
   * `type Command = State -> State` or something like that.
     * (...or maybe that's exactly what it is doing right now...)
 - [ ] Replay all states graphically!
+- [ ] .NET Core
 
 ###### Done
 
