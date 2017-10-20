@@ -1,11 +1,11 @@
-#### Project TODO List
+# Project TODO List
 
 ([Rules](#rules) below.)
 
-##### To do
+## To do
 
 - [ ] Returned states should be either `Ok<State>` or `Error<State * string>`
-  * I.e. `run: ... -> Result<State, State * string> list`
+  - I.e. `run: ... -> Result<State, State * string> list`
 - [ ] Interpreter should return errors for:
   - [ ] Bad initial location (outside of room)
     - [ ] Set initial location to closest location inside the room
@@ -15,12 +15,12 @@
   - [ ] after parser to stderr (Error msg)
   - [ ] after interpretation to stderr (Error (s, msg))
 - [ ] Investigate: Interpreter could use issue commands...
-  * `type Command = State -> State` or something like that.
-    * (...or maybe that's exactly what it is doing right now...)
+  - `type Command = State -> State` or something like that.
+    - (...or maybe that's exactly what it is doing right now...)
 - [ ] Replay all states graphically!
 - [ ] .NET Core
 
-###### Done
+## Done
 
 - [x] Program should print final return value on a separate, last, line to stdout
 - [x] Move debug outputs to respective module, and print only if in DEBUG
@@ -34,8 +34,8 @@
   - [x] Commands defaults to "" (they already do... just dont enter any)
 - [x] Handle errors stemming from partial input from redirected stdin
 - [x] Show input if it comes from redirected stdin
-  * Is it even possible???
-    * Well, sort of. But not in a platform-independent way, no.
+  - Is it even possible???
+    - Well, sort of. But not in a platform-independent way, no.
 - [x] Interpreter should return list of states
 - [x] Rename to `Lette.VacuumSim3000.*`
   - [x] Project files
@@ -55,9 +55,9 @@
     - [x] build
     - [x] Investigate: Turn off automatic package restore in projects
 - [x] ILMerge
-  * `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
+  - `.Console.exe + .Library.dll + System.ValueTuple.dll => vacsim3k.exe`
 
-##### Rules
+## Rules
 
 1. Add new tasks to the [To do](#to-do) list and prioritize.
 1. The tasks with the highest priorities are at the top of the list.
