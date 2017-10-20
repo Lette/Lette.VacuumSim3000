@@ -15,14 +15,28 @@ let printHeader () =
     ]
         |> List.iter stdout.WriteLine
 
-let printFinalResult (states : State list) =
+let printFinalResult states =
     let toString = function
         | North -> "N"
         | East -> "E"
         | South -> "S"
         | West -> "W"
 
-    let lastState = states |> List.last
+    let errorMessages = function
+        | Ok _           -> None
+        | Error (_, msg) -> Some msg
+
+    let printError msg =
+        printfn "ERROR: %s" msg
+
+    states
+        |> List.choose errorMessages
+        |> List.iter printError
+
+    let lastState =
+        match states |> List.last with
+        | Ok s         -> s
+        | Error (s, _) -> s
 
     printfn ""
     printfn "Result: %s %i %i" (lastState.Heading |> toString) lastState.Location.X lastState.Location.Y
